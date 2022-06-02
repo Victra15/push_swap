@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:09:29 by yolee             #+#    #+#             */
-/*   Updated: 2022/05/16 18:25:47 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/01 20:40:57 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	reverse_rotate(t_stack *stack)
 {
-	t_list	*temp;
+	t_double_llst	*temp;
 
 	temp = pop_bottom(stack);
 	push(stack, temp);

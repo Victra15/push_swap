@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   parse_decimal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/07 18:04:50 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/01 20:37:35 by yolee            ###   ########.fr       */
+/*   Created: 2022/03/21 18:49:54 by yolee             #+#    #+#             */
+/*   Updated: 2022/03/24 15:31:43 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-void	pa(t_stacks *stacks)
+void	parse_decimal(va_list *ap, int *print_len)
 {
-	t_double_llst	*temp;
+	int		nbr;
+	char	*str;
+	size_t	len;
 
-	temp = pop(stacks->b);
-	push(stacks->a, temp);
-}
-
-void	pb(t_stacks *stacks)
-{
-	t_double_llst	*temp;
-
-	temp = pop(stacks->a);
-	push(stacks->b, temp);
+	nbr = va_arg((*ap), int);
+	str = ft_itoa(nbr);
+	len = ft_strlen(str);
+	write(1, str, len);
+	(*print_len) += len;
+	free(str);
 }

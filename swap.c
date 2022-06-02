@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:54:18 by yolee             #+#    #+#             */
-/*   Updated: 2022/05/16 18:25:17 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/01 20:45:21 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	swap(t_stack	*stack)
 {
-	t_list	*temp1;
-	t_list	*temp2;
+	t_double_llst	*temp1;
+	t_double_llst	*temp2;
 
 	if (stack->cnt < 2)
 		return ;

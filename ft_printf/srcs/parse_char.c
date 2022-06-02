@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   parse_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/07 18:04:50 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/01 20:37:35 by yolee            ###   ########.fr       */
+/*   Created: 2022/03/22 18:22:23 by yolee             #+#    #+#             */
+/*   Updated: 2022/03/24 15:31:43 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
-void	pa(t_stacks *stacks)
+void	parse_char(va_list *ap, int *print_len)
 {
-	t_double_llst	*temp;
+	char	ch;
 
-	temp = pop(stacks->b);
-	push(stacks->a, temp);
-}
-
-void	pb(t_stacks *stacks)
-{
-	t_double_llst	*temp;
-
-	temp = pop(stacks->a);
-	push(stacks->b, temp);
+	ch = va_arg((*ap), int);
+	write(1, &ch, 1);
+	(*print_len) += 1;
 }

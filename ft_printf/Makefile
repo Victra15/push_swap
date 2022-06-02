@@ -6,32 +6,32 @@
 #    By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/26 17:02:47 by yolee             #+#    #+#              #
-#    Updated: 2022/06/01 22:34:53 by yolee            ###   ########.fr        #
+#    Updated: 2022/06/01 19:54:14 by yolee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME = libftprintf.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I $(FT_PRINTF_HEADER_DIR) -I $(LIBFT_HEADER_DIR) -I $(SRCS_DIR)
-LFLAGS = -L$(FT_PRINTF_LIB_DIR) -lftprintf
-FT_PRINTF_HEADER_DIR = ./ft_printf/srcs
-FT_PRINTF_LIB_DIR = ./ft_printf
-FT_PRINTF_DIR = ./ft_printf
-FT_PRINTF = libftprintf.a
+CFLAGS = -Wall -Wextra -Werror -I ../libft -I ./srcs -I ./bonus
 
-LIBFT_HEADER_DIR = ./libft
+AR = ar
+ARFLAGS = -rcs
 
-SRCS_DIR = ./
-SRCS_FILE = push_swap.c \
-	init_func.c \
-	input_validation.c \
-	push.c \
-	reverse_rotate.c \
-	rotate.c \
-	stack_control.c \
-	swap.c \
- 	
+LIBFT_DIR = ../libft
+LIBFT = libft.a
+
+SRCS_DIR = ./srcs
+SRCS_FILE = ft_printf.c \
+	parse_char.c \
+	parse_decimal.c \
+	parse_etc.c \
+	parse_lower_hexadecimal.c \
+	parse_ptr.c \
+	parse_str.c \
+	parse_unsigned_decimal.c \
+	parse_upper_hexadecimal.c \
+	
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILE))
 
 SRCS_DIR_B = ./bonus
@@ -56,10 +56,10 @@ ifdef BONUS_FLAG
 	OBJS = $(OBJS_B)
 endif
 
-all : $(FT_PRINTF) $(NAME)
+all : $(LIBFT) $(NAME)
 
-$(FT_PRINTF) :
-	$(MAKE) -C $(FT_PRINTF_DIR)
+$(LIBFT) :
+	$(MAKE) bonus -C $(LIBFT_DIR)
 
 bonus :
 	$(MAKE) BONUS_FLAG=1
@@ -68,16 +68,17 @@ bonus :
 	$(CC) $(CFLAGS) -c $? -o $@
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(LFLAGS) -o $(NAME) $?
+	cp $(LIBFT_DIR)/$(LIBFT) $(NAME)
+	$(AR) $(ARFLAGS) $(NAME) $?
 
 clean : 
 	$(RM) $(OBJS)
 	$(RM) $(OBJS_B)
-	$(MAKE) clean -C $(FT_PRINTF_DIR)
+	$(MAKE) clean -C $(LIBFT_DIR)
 
 fclean : clean
 	$(RM) $(NAME)
-	$(MAKE) fclean -C $(FT_PRINTF_DIR)
+	$(MAKE) fclean -C $(LIBFT_DIR)
 	
 re : fclean all
 	
