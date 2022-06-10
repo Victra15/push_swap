@@ -6,121 +6,71 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 13:52:46 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/10 18:52:41 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/10 18:57:17 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// static void	pa_radix(t_stacks *stacks,
-// 				t_opt_queue *opt_queue,
-// 				int total,
-// 				int sort_num)
-// {
-// 	while (total > 0)
-// 	{
-// 		if (stacks->b->top->index % 3 == sort_num)
-// 		{
-// 			stacks->b->top->index = stacks->b->top->index / 3;
-// 			execute_command_with_opt(stacks, opt_queue, CMD_PA, &pa);
-// 		}
-// 		else
-// 			execute_command_with_opt(stacks, opt_queue, CMD_RB, &rb);
-// 		total--;
-// 	}
-// }
+static void	pa_radix(t_stacks *stacks,
+				t_opt_queue *opt_queue,
+				int total,
+				int sort_num)
+{
+	while (total > 0)
+	{
+		if (stacks->b->top->index % 3 == sort_num)
+		{
+			stacks->b->top->index = stacks->b->top->index / 3;
+			execute_command_with_opt(stacks, opt_queue, CMD_PA, &pa);
+		}
+		else
+			execute_command_with_opt(stacks, opt_queue, CMD_RB, &rb);
+		total--;
+	}
+}
 
-// static void	pb_radix(t_stacks *stacks,
-// 				t_opt_queue *opt_queue,
-// 				int total,
-// 				int sort_num)
-// {
-// 	while (total > 0)
-// 	{
-// 		if (stacks->a->top->index % 3 == sort_num)
-// 		{
-// 			stacks->a->top->index = stacks->a->top->index / 3;
-// 			execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
-// 		}
-// 		else
-// 			execute_command_with_opt(stacks, opt_queue, CMD_RA, &ra);
-// 		total--;
-// 	}
-// }
+static void	pb_radix(t_stacks *stacks,
+				t_opt_queue *opt_queue,
+				int total,
+				int sort_num)
+{
+	while (total > 0)
+	{
+		if (stacks->a->top->index % 3 == sort_num)
+		{
+			stacks->a->top->index = stacks->a->top->index / 3;
+			execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
+		}
+		else
+			execute_command_with_opt(stacks, opt_queue, CMD_RA, &ra);
+		total--;
+	}
+}
 
 static void	b_to_a(t_stacks *stacks, t_opt_queue *opt_queue, int *max_digit)
 {
 	int	total;
-	int	mod_0_cnt;
 
 	total = stacks->b->cnt;
-	mod_0_cnt = 0;
-	while (total > 0)
-	{
-		if (stacks->b->top->index % 3 == 2)
-		{
-			stacks->b->top->index = stacks->b->top->index / 3;
-			execute_command_with_opt(stacks, opt_queue, CMD_PA, &pa);
-		}
-		else if (stacks->b->top->index % 3 == 1)
-		{
-			stacks->b->top->index = stacks->b->top->index / 3;
-			execute_command_with_opt(stacks, opt_queue, CMD_RB, &rb);
-		}
-		else
-		{
-			stacks->b->top->index = stacks->b->top->index / 3;
-			execute_command_with_opt(stacks, opt_queue, CMD_PA, &pa);
-			execute_command_with_opt(stacks, opt_queue, CMD_RA, &ra);
-			mod_0_cnt++;
-		}
-		total--;
-	}
-	while (stacks->b->top != NULL)
-		execute_command_with_opt(stacks, opt_queue, CMD_PA, &pa);
-	while (mod_0_cnt > 0)
-	{
-		execute_command_with_opt(stacks, opt_queue, CMD_RRA, &rra);
-		mod_0_cnt--;
-	}
+	pa_radix(stacks, opt_queue, total, 2);
+	total = stacks->b->cnt;
+	pa_radix(stacks, opt_queue, total, 1);
+	total = stacks->b->cnt;
+	pa_radix(stacks, opt_queue, total, 0);
 	(*max_digit)--;
 }
 
 static void	a_to_b(t_stacks *stacks, t_opt_queue *opt_queue, int *max_digit)
 {
 	int	total;
-	int	mod_2_cnt;
 
 	total = stacks->a->cnt;
-	mod_2_cnt = 0;
-	while (total > 0)
-	{
-		if (stacks->a->top->index % 3 == 0)
-		{
-			stacks->a->top->index = stacks->a->top->index / 3;
-			execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
-		}
-		else if (stacks->a->top->index % 3 == 1)
-		{
-			stacks->a->top->index = stacks->a->top->index / 3;
-			execute_command_with_opt(stacks, opt_queue, CMD_RA, &ra);
-		}
-		else
-		{
-			stacks->a->top->index = stacks->a->top->index / 3;
-			execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
-			execute_command_with_opt(stacks, opt_queue, CMD_RB, &rb);
-			mod_2_cnt++;
-		}
-		total--;
-	}
-	while (stacks->a->top != NULL)
-		execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
-	while (mod_2_cnt > 0)
-	{
-		execute_command_with_opt(stacks, opt_queue, CMD_RRB, &rrb);
-		mod_2_cnt--;
-	}
+	pb_radix(stacks, opt_queue, total, 0);
+	total = stacks->a->cnt;
+	pb_radix(stacks, opt_queue, total, 1);
+	total = stacks->a->cnt;
+	pb_radix(stacks, opt_queue, total, 2);
 	(*max_digit)--;
 }
 
