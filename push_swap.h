@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 12:51:29 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/02 17:44:21 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/10 15:31:28 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ typedef struct s_stacks
 	struct s_stack	*a;
 	struct s_stack	*b;
 }t_stacks;
+
+void				execute_command_with_print(t_stacks *stacks,
+						char *command_name,
+						void (*f)(t_stacks *));
+
+void				radix_sort_base3(t_stacks *stacks);
+
+void				sort_2_elem(t_stacks *stacks);
+void				sort_3_elem(t_stacks *stacks);
 
 t_double_llst		*init_node(int _data);
 t_stack				*init_stack(void);
