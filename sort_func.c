@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 13:52:46 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/10 18:45:07 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/10 18:52:41 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,31 @@ static void	b_to_a(t_stacks *stacks, t_opt_queue *opt_queue, int *max_digit)
 	int	total;
 	int	mod_0_cnt;
 
-	total = stacks->a->cnt;
+	total = stacks->b->cnt;
 	mod_0_cnt = 0;
-	if (stacks->b->top->index % 3 == 2)
+	while (total > 0)
 	{
-		stacks->b->top->index = stacks->a->top->index / 3;
-		execute_command_with_opt(stacks, opt_queue, CMD_PA, &pa);
-	}
-	else if (stacks->b->top->index % 3 == 1)
-	{
-		stacks->b->top->index = stacks->a->top->index / 3;
-		execute_command_with_opt(stacks, opt_queue, CMD_RB, &rb);
-	}
-	else
-	{
-		stacks->b->top->index = stacks->a->top->index / 3;
-		execute_command_with_opt(stacks, opt_queue, CMD_PA, &pa);
-		execute_command_with_opt(stacks, opt_queue, CMD_RA, &ra);
-		mod_0_cnt++;
+		if (stacks->b->top->index % 3 == 2)
+		{
+			stacks->b->top->index = stacks->b->top->index / 3;
+			execute_command_with_opt(stacks, opt_queue, CMD_PA, &pa);
+		}
+		else if (stacks->b->top->index % 3 == 1)
+		{
+			stacks->b->top->index = stacks->b->top->index / 3;
+			execute_command_with_opt(stacks, opt_queue, CMD_RB, &rb);
+		}
+		else
+		{
+			stacks->b->top->index = stacks->b->top->index / 3;
+			execute_command_with_opt(stacks, opt_queue, CMD_PA, &pa);
+			execute_command_with_opt(stacks, opt_queue, CMD_RA, &ra);
+			mod_0_cnt++;
+		}
+		total--;
 	}
 	while (stacks->b->top != NULL)
-		execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
+		execute_command_with_opt(stacks, opt_queue, CMD_PA, &pa);
 	while (mod_0_cnt > 0)
 	{
 		execute_command_with_opt(stacks, opt_queue, CMD_RRA, &rra);
@@ -89,22 +93,26 @@ static void	a_to_b(t_stacks *stacks, t_opt_queue *opt_queue, int *max_digit)
 
 	total = stacks->a->cnt;
 	mod_2_cnt = 0;
-	if (stacks->a->top->index % 3 == 0)
+	while (total > 0)
 	{
-		stacks->a->top->index = stacks->a->top->index / 3;
-		execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
-	}
-	else if (stacks->a->top->index % 3 == 1)
-	{
-		stacks->a->top->index = stacks->a->top->index / 3;
-		execute_command_with_opt(stacks, opt_queue, CMD_RA, &ra);
-	}
-	else
-	{
-		stacks->a->top->index = stacks->a->top->index / 3;
-		execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
-		execute_command_with_opt(stacks, opt_queue, CMD_RB, &rb);
-		mod_2_cnt++;
+		if (stacks->a->top->index % 3 == 0)
+		{
+			stacks->a->top->index = stacks->a->top->index / 3;
+			execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
+		}
+		else if (stacks->a->top->index % 3 == 1)
+		{
+			stacks->a->top->index = stacks->a->top->index / 3;
+			execute_command_with_opt(stacks, opt_queue, CMD_RA, &ra);
+		}
+		else
+		{
+			stacks->a->top->index = stacks->a->top->index / 3;
+			execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
+			execute_command_with_opt(stacks, opt_queue, CMD_RB, &rb);
+			mod_2_cnt++;
+		}
+		total--;
 	}
 	while (stacks->a->top != NULL)
 		execute_command_with_opt(stacks, opt_queue, CMD_PB, &pb);
