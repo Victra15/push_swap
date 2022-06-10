@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 19:57:52 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/05 22:17:13 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/10 18:21:38 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 
 static void	print_error(void)
 {
-	ft_printf("error\n");
+	write(2, "error\n", 6);
 	exit(EXIT_FAILURE);
+}
+
+static int	ft_issign(char ch)
+{
+	if (ch == '+' || ch == '-')
+		return (1);
+	else
+		return (0);
 }
 
 void	find_input_error(char *input)
@@ -24,7 +32,13 @@ void	find_input_error(char *input)
 		print_error();
 	while ((*input) != '\0')
 	{
-		if (!ft_isdigit((*input)) && *input != ' ')
+		if (ft_issign(*input))
+		{	
+			input++;
+			if (!ft_isdigit(*input))
+				print_error();
+		}
+		if (!ft_isdigit(*input) && *input != ' ')
 			print_error();
 		input++;
 	}
