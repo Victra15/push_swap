@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 12:51:29 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/02 16:08:59 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/02 17:44:21 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_stacks
 
 t_double_llst		*init_node(int _data);
 t_stack				*init_stack(void);
-t_stacks			*init_stacks(t_stacks *stacks, int argc, char **argv);
+t_stacks			*init_stacks(int argc, char **argv);
 
 void				find_input_error(char	*input);
 void				insert_index_list(t_list **index_list,

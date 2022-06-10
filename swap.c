@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 15:54:18 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/01 20:45:21 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/03 01:42:05 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	swap(t_stack	*stack)
 	{
 		temp1 = pop(stack);
 		temp2 = pop(stack);
-		push(stack, temp2);
 		push(stack, temp1);
+		push(stack, temp2);
 	}
 }
 

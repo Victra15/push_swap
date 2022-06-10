@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 12:51:31 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/02 16:11:04 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/09 16:55:50 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,49 +41,55 @@ void	print_stacks(t_stacks *stacks)
 		}
 		ft_printf("\n");
 	}
+	ft_printf("\n");
 }
 
-void	print_pattern(t_stacks stacks, void (*f)(t_stacks *), int level)
+void	radix_sort(t_stacks *stacks)
 {
-	// pa pb sa sb ss sb ra rb rr rra rrb rrr
-	f(&stacks);
-	print_stacks(&stacks);
-	if (level < 2)
+	int	sort_bit;
+	int	total;
+	int	loop;
+	int	cnt;
+
+	total = stacks->a->cnt;
+	cnt = 0;
+	sort_bit = 1;
+	while (sort_bit < total)
 	{
-		ft_printf("pa\n");
-		print_pattern(stacks, &pa, level + 1);
-		ft_printf("pb\n");
-		print_pattern(stacks, &pb, level + 1);
-		// print_pattern(stacks, &sa, level + 1);
-		// print_pattern(stacks, &sb, level + 1);
-		// print_pattern(stacks, &ss, level + 1);
-		// print_pattern(stacks, &ra, level + 1);
-		// print_pattern(stacks, &rb, level + 1);
-		// print_pattern(stacks, &rr, level + 1);
-		// print_pattern(stacks, &rra, level + 1);
-		// print_pattern(stacks, &rrb, level + 1);
-		// print_pattern(stacks, &rrr, level + 1);
+		loop = 0;
+		while (loop < total)
+		{
+			if (sort_bit & stacks->a->top->index)
+			{
+				ft_printf("ra");
+				ra(stacks);
+			}
+			else
+			{
+				ft_printf("pb");
+				pb(stacks);
+			}
+			loop++;
+			cnt++;
+		}
+		while (stacks->b->top != NULL)
+		{
+			ft_printf("pa");
+			pa(stacks);
+			cnt++;
+		}
+		ft_printf("\n");
+		print_stacks(stacks);
+		sort_bit = sort_bit << 1;
 	}
+	ft_printf("%d\n", cnt);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stacks	*stacks;
 
-	stacks = init_stacks(stacks, argc, argv);
-	pb(stacks);
-	pb(stacks);
-	pb(stacks);
-	print_pattern(*stacks, &pa, 1);
-	// print_pattern(*stacks, &pb, 1);
-	// print_pattern(*stacks, &sa, 1);
-	// print_pattern(*stacks, &sb, 1);
-	// print_pattern(*stacks, &ss, 1);
-	// print_pattern(*stacks, &ra, 1);
-	// print_pattern(*stacks, &rb, 1);
-	// print_pattern(*stacks, &rr, 1);
-	// print_pattern(*stacks, &rra, 1);
-	// print_pattern(*stacks, &rrb, 1);
-	// print_pattern(*stacks, &rrr, 1);
+	stacks = init_stacks(argc, argv);
+	radix_sort(stacks);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 19:57:52 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/02 16:15:30 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/05 22:17:13 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	print_error(void)
 
 void	find_input_error(char *input)
 {
+	if ((*input) == '\0')
+		print_error();
 	while ((*input) != '\0')
 	{
 		if (!ft_isdigit((*input)) && *input != ' ')
@@ -57,8 +59,6 @@ static void	insert_new_node(t_list **index_list, t_double_llst *new_node)
 
 void	insert_index_list(t_list **index_list, t_double_llst *new_node)
 {
-	t_list	*insert_pos;
-
 	if ((*index_list) == NULL)
 		(*index_list) = ft_lstnew(new_node);
 	else

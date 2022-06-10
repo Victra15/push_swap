@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:59:27 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/01 20:44:36 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/04 23:32:04 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_double_llst	*pop(t_stack *stack)
 		stack->top = stack->top->prev;
 		if (stack->cnt == 1)
 			stack->bottom = stack->top;
+		if (stack->top != NULL)
+			stack->top->next = NULL;
 		temp->prev = NULL;
 	}
 	stack->cnt--;
@@ -42,6 +44,8 @@ t_double_llst	*pop_bottom(t_stack *stack)
 		stack->bottom = stack->bottom->next;
 		if (stack->cnt == 1)
 			stack->top = stack->bottom;
+		if (stack->bottom != NULL)
+			stack->bottom->prev = NULL;
 		temp->next = NULL;
 	}
 	stack->cnt--;

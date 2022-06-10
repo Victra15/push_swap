@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:13:04 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/02 16:17:11 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/02 17:44:12 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	set_stack(t_stack *stack, int argc, char **argv)
 	stack_indexing(index_list);
 }
 
-t_stacks	*init_stacks(t_stacks *stacks, int argc, char **argv)
+t_stacks	*init_stacks(int argc, char **argv)
 {
 	t_stacks	*new;
 
