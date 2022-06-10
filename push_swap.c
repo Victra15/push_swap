@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 12:51:31 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/10 16:17:40 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/10 17:52:42 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,19 @@ void	print_stacks(t_stacks *stacks)
 	ft_printf("\n");
 }
 
-
-void	execute_command_with_print(t_stacks *stacks,
-							char *command_name,
-							void (*f)(t_stacks *))
-{
-	ft_printf("%s\n", command_name);
-	f(stacks);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stacks	*stacks;
+	t_opt_queue	*opt_queue;
 
 	stacks = init_stacks(argc, argv);
+	opt_queue = init_opt_queue();
 	if (stacks->a->cnt == 2)
-		sort_2_elem(stacks);
+		sort_2_elem(stacks, opt_queue);
 	else if (stacks->a->cnt == 3)
-		sort_3_elem(stacks);
+		sort_3_elem(stacks, opt_queue);
 	else if (stacks->a->cnt > 3)
-		radix_sort_base3(stacks);
-	print_stacks(stacks);
+		radix_sort_base3(stacks, opt_queue);
+	print_cmd_list(opt_queue);
 	return (0);
 }
