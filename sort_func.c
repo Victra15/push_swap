@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 13:52:46 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/10 15:45:02 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/10 16:20:04 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,28 @@
 
 static void	pa_radix(t_stacks *stacks, int total, int sort_num)
 {
-	while (total <= 0)
+	while (total > 0)
 	{
-		if (stacks->b->top->data % 3 == sort_num)
+		if (stacks->b->top->index % 3 == sort_num)
+		{
+			stacks->b->top->index = stacks->b->top->index / 3;
 			execute_command_with_print(stacks, "pa", &pa);
+		}
 		else
-			execute_command_with_print(stacks, "rb", &ra);
+			execute_command_with_print(stacks, "rb", &rb);
 		total--;
 	}
 }
 
 static void	pb_radix(t_stacks *stacks, int total, int sort_num)
 {
-	while (total <= 0)
+	while (total > 0)
 	{
-		if (stacks->b->top->data % 3 == sort_num)
-			execute_command_with_print(stacks, "pb", &pa);
+		if (stacks->a->top->index % 3 == sort_num)
+		{
+			stacks->a->top->index = stacks->a->top->index / 3;
+			execute_command_with_print(stacks, "pb", &pb);
+		}
 		else
 			execute_command_with_print(stacks, "ra", &ra);
 		total--;
@@ -59,7 +65,6 @@ static void	a_to_b(t_stacks *stacks, int *max_digit)
 	pb_radix(stacks, total, 1);
 	total = stacks->a->cnt;
 	pb_radix(stacks, total, 2);
-	stacks->a->top->index = stacks->a->top->index / 3;
 	(*max_digit)--;
 }
 
@@ -75,7 +80,7 @@ void	radix_sort_base3(t_stacks *stacks)
 		total = total / 3;
 		max_digit++;
 	}
-	while (max_digit <= 0)
+	while (max_digit > 0)
 	{
 		a_to_b(stacks, &max_digit);
 		b_to_a(stacks, &max_digit);

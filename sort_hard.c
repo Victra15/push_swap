@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 15:19:40 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/10 15:46:45 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/10 16:06:26 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	sort_2_elem(t_stacks *stacks)
 	int	elem1;
 	int	elem2;
 
-	elem1 = stacks->a->top->data;
-	elem2 = stacks->a->top->prev->data;
+	elem1 = stacks->a->top->index;
+	elem2 = stacks->a->top->prev->index;
 	if (elem1 > elem2)
 		execute_command_with_print(stacks, "sa", &sa);
 }
@@ -29,9 +29,9 @@ void	sort_3_elem(t_stacks *stacks)
 	int	elem2;
 	int	elem3;
 
-	elem1 = stacks->a->top->data;
-	elem2 = stacks->a->top->prev->data;
-	elem3 = stacks->a->top->prev->prev->data;
+	elem1 = stacks->a->top->index;
+	elem2 = stacks->a->top->prev->index;
+	elem3 = stacks->a->top->prev->prev->index;
 	if (elem1 == 0 && elem2 == 2 && elem3 == 1)
 	{
 		execute_command_with_print(stacks, "sa", &sa);
