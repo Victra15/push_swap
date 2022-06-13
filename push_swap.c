@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 12:51:31 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/10 18:03:07 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/14 04:58:48 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ int	main(int argc, char **argv)
 		sort_2_elem(stacks, opt_queue);
 	else if (stacks->a->cnt == 3)
 		sort_3_elem(stacks, opt_queue);
-	else if (stacks->a->cnt > 3)
-		radix_sort_base3(stacks, opt_queue);
+	else if (stacks->a->cnt == 4)
+		sort_4_elem(stacks, opt_queue);
+	else if (stacks->a->cnt == 5)
+		sort_5_elem(stacks, opt_queue);
+	else if (stacks->a->cnt > 5)
+		merge_sort(stacks, opt_queue);
 	print_cmd_list(opt_queue);
 	return (0);
 }
