@@ -6,27 +6,11 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 02:52:26 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/16 01:30:38 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/16 02:00:48 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	calc_merge_size(int *total_size,
-					int *adj_merge_size,
-					int merge_size)
-{
-	if ((*total_size) >= merge_size)
-	{
-		(*adj_merge_size) = merge_size;
-		(*total_size) = (*total_size) - merge_size;
-	}
-	else
-	{
-		(*adj_merge_size) = (*total_size);
-		(*total_size) = 0;
-	}
-}
 
 static int	new_is_combinable(int opt_tail_cmd_num,
 				int cmd_num,

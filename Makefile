@@ -6,7 +6,7 @@
 #    By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/26 17:02:47 by yolee             #+#    #+#              #
-#    Updated: 2022/06/16 01:31:18 by yolee            ###   ########.fr        #
+#    Updated: 2022/06/16 02:08:06 by yolee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,10 @@ SRCS_FILE = main.c \
 	rotate.c \
 	push.c \
 	sort_hard.c \
+	sort_hard_merge.c \
 	stack_control.c \
 	swap.c \
 	radix_sort.c \
-	merge_sort.c \
  	
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILE))
 

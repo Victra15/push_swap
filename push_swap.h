@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 12:51:29 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/16 01:30:38 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/16 02:07:44 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,15 @@ typedef struct s_stacks
 }t_stacks;
 
 void				radix_sort_base3(t_stacks *stacks, t_opt_queue *opt_queue);
-void				merge_sort(t_stacks *stacks,
-						t_opt_queue *opt_queue);
 
-void				sort_2_elem(t_stacks *stacks, t_opt_queue *opt_queue);
-void				sort_3_elem(t_stacks *stacks, t_opt_queue *opt_queue);
-void				sort_4_elem(t_stacks *stacks, t_opt_queue *opt_queue);
-void				sort_5_elem(t_stacks *stacks, t_opt_queue *opt_queue);
-void				sort_6_elem(t_stacks *stacks, t_opt_queue *opt_queue);
-
-void				calc_merge_size(int *total_size,
-						int *adj_merge_size,
-						int merge_size);
 void				merge_b_to_a(t_stacks *stacks,
 						t_opt_queue *opt_queue,
 						int a_merge_size,
 						int b_merge_size);
-void				merge_a_to_b(t_stacks *stacks,
-						t_opt_queue *opt_queue,
-						int a_merge_size,
-						int b_merge_size);
+void				sort_2_elem(t_stacks *stacks, t_opt_queue *opt_queue);
+void				sort_3_elem(t_stacks *stacks, t_opt_queue *opt_queue);
+void				sort_4_elem(t_stacks *stacks, t_opt_queue *opt_queue);
+void				sort_5_elem(t_stacks *stacks, t_opt_queue *opt_queue);
 
 t_opt_list			*opt_init_node(int cmd_num);
 void				opt_add_node(t_opt_queue *opt_queue, int cmd_num);

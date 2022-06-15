@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 23:39:31 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/16 01:30:38 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/16 02:01:23 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	execute_merge_cmd(t_stacks *stacks,
 		execute_command_with_opt(stacks, opt_queue, CMD_RRA, &rra);
 	(*merge_size)--;
 }
-
 
 void	merge_b_to_a(t_stacks *stacks,
 					t_opt_queue *opt_queue,
