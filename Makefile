@@ -6,13 +6,13 @@
 #    By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/26 17:02:47 by yolee             #+#    #+#              #
-#    Updated: 2022/06/14 04:11:44 by yolee            ###   ########.fr        #
+#    Updated: 2022/06/16 01:31:18 by yolee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -I $(FT_PRINTF_HEADER_DIR) -I $(LIBFT_HEADER_DIR) -I $(SRCS_DIR)
 LFLAGS = -L$(FT_PRINTF_LIB_DIR) -lftprintf
 FT_PRINTF_HEADER_DIR = ./ft_printf/srcs
@@ -23,20 +23,20 @@ FT_PRINTF = libftprintf.a
 LIBFT_HEADER_DIR = ./libft
 
 SRCS_DIR = ./
-SRCS_FILE = push_swap.c \
+SRCS_FILE = main.c \
 	init_func.c \
 	input_validation.c \
-	push.c \
-	reverse_rotate.c \
-	rotate.c \
-	stack_control.c \
-	swap.c \
-	sort_func.c \
-	sort_hard.c \
+	opt_queue_manage.c \
 	optimization.c \
 	print_func.c \
+	reverse_rotate.c \
+	rotate.c \
+	push.c \
+	sort_hard.c \
+	stack_control.c \
+	swap.c \
+	radix_sort.c \
 	merge_sort.c \
-	optimize_merge_sort_calc.c \
  	
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILE))
 

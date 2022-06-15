@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 19:57:52 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/10 18:21:38 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/16 01:39:24 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static int	ft_issign(char ch)
 
 void	find_input_error(char *input)
 {
+	int	digit_find_flag;
+
+	digit_find_flag = 0;
 	if ((*input) == '\0')
 		print_error();
 	while ((*input) != '\0')
@@ -38,10 +41,14 @@ void	find_input_error(char *input)
 			if (!ft_isdigit(*input))
 				print_error();
 		}
+		if (ft_isdigit(*input))
+			digit_find_flag = 1;
 		if (!ft_isdigit(*input) && *input != ' ')
 			print_error();
 		input++;
 	}
+	if (digit_find_flag == 0)
+		print_error();
 }
 
 static void	insert_new_node(t_list **index_list, t_double_llst *new_node)

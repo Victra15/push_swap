@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:13:04 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/02 17:44:12 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/16 01:51:27 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	set_stack(t_stack *stack, int argc, char **argv)
 {
 	int				loop;
 	char			**input_set;
+	char			**iter;
 	t_list			*index_list;
 	t_double_llst	*new_node;
 
@@ -69,13 +70,16 @@ static void	set_stack(t_stack *stack, int argc, char **argv)
 	{
 		find_input_error(argv[loop]);
 		input_set = ft_split(argv[loop], ' ');
-		while ((*input_set) != NULL)
+		iter = input_set;
+		while ((*iter) != NULL)
 		{
-			new_node = init_node(ft_atoi(*input_set));
+			new_node = init_node(ft_atoi(*iter));
 			insert_index_list(&index_list, new_node);
 			push_bottom(stack, new_node);
-			input_set++;
+			free(*iter);
+			iter++;
 		}
+		free(input_set);
 		loop++;
 	}
 	stack_indexing(index_list);
