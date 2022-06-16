@@ -6,11 +6,25 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 12:51:31 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/16 01:56:08 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/17 04:06:55 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	is_already_sorted(t_stacks *stacks)
+{
+	t_double_llst	*iter;
+
+	iter = stacks->a->top;
+	while (iter->prev != NULL)
+	{
+		if (iter->index > iter->prev->index)
+			return (0);
+		iter = iter->prev;
+	}
+	return (1);
+}
 
 int	main(int argc, char **argv)
 {
@@ -18,6 +32,8 @@ int	main(int argc, char **argv)
 	t_opt_queue	*opt_queue;
 
 	stacks = init_stacks(argc, argv);
+	if (is_already_sorted(stacks))
+		return (0);
 	opt_queue = init_opt_queue();
 	if (stacks->a->cnt == 2)
 		sort_2_elem(stacks, opt_queue);

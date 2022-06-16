@@ -6,7 +6,7 @@
 #    By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/26 17:02:47 by yolee             #+#    #+#              #
-#    Updated: 2022/06/16 17:22:00 by yolee            ###   ########.fr        #
+#    Updated: 2022/06/17 03:41:52 by yolee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ LIBFT_HEADER_DIR = ./libft
 SRCS_DIR = ./
 SRCS_FILE = main.c \
 	init_func.c \
-	input_validation.c \
+	make_indexing_lst.c \
+	find_input_error.c \
 	opt_queue_manage.c \
 	optimization.c \
 	print_func.c \

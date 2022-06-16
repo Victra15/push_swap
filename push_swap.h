@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 12:51:29 by yolee             #+#    #+#             */
-/*   Updated: 2022/06/16 02:07:44 by yolee            ###   ########.fr       */
+/*   Updated: 2022/06/17 03:42:55 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,11 @@ t_double_llst		*init_node(int _data);
 t_stack				*init_stack(void);
 t_stacks			*init_stacks(int argc, char **argv);
 
+void				print_error(void);
 void				find_input_error(char	*input);
-void				insert_index_list(t_list **index_list,
-						t_double_llst *new_node);
+void				add_to_stack(t_list **index_list,
+						t_stack *stack,
+						char *num_str);
 
 t_double_llst		*pop(t_stack *stack);
 t_double_llst		*pop_bottom(t_stack *stack);
