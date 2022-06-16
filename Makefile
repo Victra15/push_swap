@@ -6,7 +6,7 @@
 #    By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/26 17:02:47 by yolee             #+#    #+#              #
-#    Updated: 2022/06/16 02:08:06 by yolee            ###   ########.fr        #
+#    Updated: 2022/06/16 17:22:00 by yolee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,35 +40,12 @@ SRCS_FILE = main.c \
  	
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILE))
 
-SRCS_DIR_B = ./bonus
-SRCS_FILE_B = ft_printf_bonus.c \
-	flag_control_bonus.c \
-	manage_format_str_bonus.c \
-	parse_char_bonus.c \
-	parse_decimal_bonus.c \
-	parse_etc_bonus.c \
-	parse_lower_hexadecimal_bonus.c \
-	parse_ptr_bonus.c \
-	parse_str_bonus.c \
-	parse_unsigned_decimal_bonus.c \
-	parse_upper_hexadecimal_bonus.c \
-
-SRCS_B = $(addprefix $(SRCS_DIR_B)/, $(SRCS_FILE_B))
-	
 OBJS = $(SRCS:.c=.o)
-OBJS_B = $(SRCS_B:.c=.o)
-
-ifdef BONUS_FLAG
-	OBJS = $(OBJS_B)
-endif
 
 all : $(FT_PRINTF) $(NAME)
 
 $(FT_PRINTF) :
 	$(MAKE) -C $(FT_PRINTF_DIR)
-
-bonus :
-	$(MAKE) BONUS_FLAG=1
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $? -o $@
@@ -78,7 +55,6 @@ $(NAME) : $(OBJS)
 
 clean : 
 	$(RM) $(OBJS)
-	$(RM) $(OBJS_B)
 	$(MAKE) clean -C $(FT_PRINTF_DIR)
 
 fclean : clean
@@ -87,4 +63,4 @@ fclean : clean
 	
 re : fclean all
 	
-.PHONY : bonus all clean fclean re
+.PHONY : all clean fclean re
